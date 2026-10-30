@@ -1,4 +1,3 @@
-
 def mostrar_matriz(A):
     for fila in A:
         print(fila)
@@ -100,23 +99,6 @@ def gauss_seidel(A, b, tolerancia=1e-6, max_iter=100):
 
     raise ValueError("El metodo no converge")
 
-def jacobi(A, b, tolerancia=1e-6, max_iter=100):
-    n = len(A)
-
-    if any(abs(A[i][i]) < 1e-12 for i in range(n)):
-        raise ValueError("La diagonal contiene ceros")
-
-    x = [0.0] * n
-
-    for _ in range(max_iter):
-        nuevo = [0.0] * n
-
-        for i in range(n):
-            suma = sum(A[i][j] * x[j] for j in range(n) if j != i)
-            nuevo[i] = (b[i] - suma) / A[i][i]
-
-        error = max(abs(nuevo[i] - x[i]) for i in range(n))
-        x = nuevo
 
         if error < tolerancia:
             return x
@@ -171,7 +153,6 @@ def main():
         print("1. Eliminacion Gaussiana")
         print("2. Gauss-Jordan")
         print("3. Gauss-Seidel")
-        print("4. Jacobi")
         print("5. Ejecutar pruebas")
         print("6. Salir")
 
@@ -189,7 +170,6 @@ def main():
             "1": eliminacion_gaussiana,
             "2": gauss_jordan,
             "3": gauss_seidel,
-            "4": jacobi
         }
 
         if opcion not in metodos:
